@@ -1,0 +1,22 @@
+author: mongoose-os
+type: lib
+description: An empty lib that does nothing
+version: 1.0
+
+sources:
+  - src
+filesystem:
+  - fs
+config_schema:
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/arduino-compat
+  - origin: https://github.com/mongoose-os-libs/arduino-wire
+
+tags:
+  - c
+
+includes:
+  - include
+
+manifest_version: 2017-09-29
