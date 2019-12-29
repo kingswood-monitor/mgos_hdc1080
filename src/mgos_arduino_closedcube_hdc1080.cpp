@@ -28,8 +28,8 @@ public:
 
     bool isAvailable()
     {
-        uint16_t deviceID = this->getDeviceId();
-        uint16_t manufacturerID = this->getManufacturerId();
+        uint16_t deviceID = sensor.readDeviceId();
+        uint16_t manufacturerID = sensor.readManufacturerId();
 
         return (deviceID == 0x1050) && (manufacturerID == 0x5449);
     }
