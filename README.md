@@ -23,6 +23,7 @@ config_schema:
 ```
 #include "mgos_arduino_closedcube_hdc1080.h"
 
+// Create a sensor object
 ClosedCube_HDC1080 *hdc1080 = mgos_HDC1080_create();
 
 enum mgos_app_init_result mgos_app_init(void)

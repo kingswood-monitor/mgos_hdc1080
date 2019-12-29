@@ -12,7 +12,6 @@ mongoose_os_version: ${mos.version}
 tags:
    - c
    - HDC1080
-   - hardware
    - temperature
    - humidity
 
