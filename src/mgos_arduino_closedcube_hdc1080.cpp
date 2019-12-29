@@ -1,55 +1,89 @@
+#include "closedcube_hdc1080.h"
+
 #include "mgos_arduino_closedcube_hdc1080.h"
 
-ClosedCube_HDC1080 *mgos_HDC1080_create()
+class HDC1080_Sensor : public Sensor
 {
-    return new ClosedCube_HDC1080();
+public:
+    HDC1080_Sensor()
+    {
+        sensor = ClosedCube_HDC1080();
+        sensor.begin(0x40);
+    }
+
+    float readTemperature()
+    {
+        return sensor.readTemperature();
+    }
+
+    float readHumidity()
+    {
+        return sensor.readHumidity();
+    }
+
+    int readCO2()
+    {
+        return 0;
+    }
+
+    bool isAvailable()
+    {
+        uint16_t deviceID = this->getDeviceId();
+        uint16_t manufacturerID = this->getManufacturerId();
+
+        return (deviceID == 0x1050) && (manufacturerID == 0x5449);
+    }
+
+    uint16_t getManufacturerId()
+    {
+        return sensor.readManufacturerId();
+    }
+
+    uint16_t getDeviceId()
+    {
+        return sensor.readDeviceId();
+    }
+
+private:
+    ClosedCube_HDC1080 sensor;
+};
+
+Sensor *mgos_HDC1080_create()
+{
+    return new HDC1080_Sensor();
 }
 
-void mgos_HDC1080_begin(ClosedCube_HDC1080 *hdc)
+uint16_t mgos_HDC1080_read_manufacturer_id(Sensor *sensor)
 {
-    if (hdc == nullptr)
-        return;
-    hdc->begin(0x40);
-}
-
-uint16_t mgos_HDC1080_read_manufacturer_id(ClosedCube_HDC1080 *hdc)
-{
-    if (hdc == nullptr)
+    if (sensor == nullptr)
         return -1;
-    uint16_t data = hdc->readManufacturerId();
-    return data;
+    return sensor->getManufacturerId();
 }
 
-uint16_t mgos_HDC1080_read_device_id(ClosedCube_HDC1080 *hdc)
+uint16_t mgos_HDC1080_read_device_id(Sensor *sensor)
 {
-    if (hdc == nullptr)
+    if (sensor == nullptr)
         return -1;
-    uint16_t data = hdc->readDeviceId();
-    return data;
+    return sensor->getDeviceId();
 }
 
-bool mgos_HDC1080_is_connected(ClosedCube_HDC1080 *hdc)
+bool mgos_HDC1080_is_available(Sensor *sensor)
 {
-    if (hdc == nullptr)
-        return -1;
-    uint16_t deviceID = hdc->readDeviceId();
-    uint16_t manufacturerID = hdc->readManufacturerId();
-
-    return (deviceID == 0x1050) && (manufacturerID == 0x5449);
+    if (sensor == nullptr)
+        return false;
+    return sensor->isAvailable();
 }
 
-double mgos_HDC1080_read_temperature(ClosedCube_HDC1080 *hdc)
+double mgos_HDC1080_read_temperature(Sensor *sensor)
 {
-    if (hdc == nullptr)
+    if (sensor == nullptr)
         return -1;
-    double data = hdc->readTemperature();
-    return data;
+    return sensor->readTemperature();
 }
 
-double mgos_HDC1080_read_humidity(ClosedCube_HDC1080 *hdc)
+double mgos_HDC1080_read_humidity(Sensor *sensor)
 {
-    if (hdc == nullptr)
+    if (sensor == nullptr)
         return -1;
-    double data = hdc->readHumidity();
-    return data;
+    return sensor->readHumidity();
 }
