@@ -1,8 +1,8 @@
-# Mongoose OS Driver: HDC1080
+# Mongoose OS Library: TI HDC1080
 
 ## Overview
 
-This is a driver for a Texas Instruments HDC1080 low power, high accuracy digital temperature and humidity sensor. It is a port to Mongoose OS of the Arduino ClosedCube HDC1080 driver - ClosedCube's rights to the original code are acknowledged. It is configured in maximum (14 bit) resolution. It is tested on an ESP8266.
+This is a library for a Texas Instruments HDC1080 low power, high accuracy digital temperature and humidity sensor. It is a port to Mongoose OS of the Arduino ClosedCube HDC1080 driver - ClosedCube's rights to the original code are acknowledged. It is configured in maximum (14 bit) resolution. It is tested on an ESP8266.
 
 ## Usage
 
@@ -10,7 +10,7 @@ This is a driver for a Texas Instruments HDC1080 low power, high accuracy digita
 
 ```
 libs:
-  - origin: https://github.com/richardjlyon/arduino_closedcube_hdc1080.git
+  - origin: https://github.com/richardjlyon/arduino_closedcube_hdc1080
 
 config_schema:
   - ["i2c.enable", true]
