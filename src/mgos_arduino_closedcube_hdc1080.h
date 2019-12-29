@@ -9,12 +9,6 @@ extern "C"
     // Create an HDC1080 instance
     Sensor *mgos_HDC1080_create();
 
-    // Read manufacturer ID
-    uint16_t mgos_HDC1080_read_manufacturer_id(Sensor *sensor);
-
-    // Read device ID
-    uint16_t mgos_HDC1080_read_device_id(Sensor *sensor);
-
     // Is device connected?
     bool mgos_HDC1080_is_available(Sensor *sensor);
 

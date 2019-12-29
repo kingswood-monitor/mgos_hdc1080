@@ -34,16 +34,6 @@ public:
         return (deviceID == 0x1050) && (manufacturerID == 0x5449);
     }
 
-    uint16_t getManufacturerId()
-    {
-        return sensor.readManufacturerId();
-    }
-
-    uint16_t getDeviceId()
-    {
-        return sensor.readDeviceId();
-    }
-
 private:
     ClosedCube_HDC1080 sensor;
 };
@@ -51,20 +41,6 @@ private:
 Sensor *mgos_HDC1080_create()
 {
     return new HDC1080_Sensor();
-}
-
-uint16_t mgos_HDC1080_read_manufacturer_id(Sensor *sensor)
-{
-    if (sensor == nullptr)
-        return -1;
-    return sensor->getManufacturerId();
-}
-
-uint16_t mgos_HDC1080_read_device_id(Sensor *sensor)
-{
-    if (sensor == nullptr)
-        return -1;
-    return sensor->getDeviceId();
 }
 
 bool mgos_HDC1080_is_available(Sensor *sensor)
