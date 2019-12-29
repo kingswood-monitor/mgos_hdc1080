@@ -1,7 +1,19 @@
-author: mongoose-os
+author: Richard Lyon <richardlyon@fastmail.com>
 type: lib
-description: An empty lib that does nothing
+description: A driver for A TI HDC1080 temperature and humidity sensor
 version: 1.0
+
+name: HDC1080_DRIVER
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+tags:
+   - c
+   - HDC1080
+   - temperature
+   - humidity
 
 sources:
   - src
