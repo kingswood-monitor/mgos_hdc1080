@@ -4,6 +4,8 @@
 
 This is a library for a Texas Instruments HDC1080 low power, high accuracy digital temperature and humidity sensor. It is a port to Mongoose OS of the Arduino ClosedCube HDC1080 driver - ClosedCube's rights to the original code are acknowledged. It is configured in maximum (14 bit) resolution. It is tested on an ESP8266.
 
+Interaction with the device is via a virtual interface. See [Mongoose OS Library: Sensor virtual interface](https://github.com/richardjlyon/arduino_sensor_interface) for details.
+
 ## Usage
 
 ### mos.yml
@@ -24,21 +26,21 @@ config_schema:
 #include "mgos_arduino_closedcube_hdc1080.h"
 
 // Create a sensor object
-ClosedCube_HDC1080 *hdc1080 = mgos_HDC1080_create();
+Sensor *sensor;
 
 enum mgos_app_init_result mgos_app_init(void)
 {
   // Initialise the sensor
-  mgos_HDC1080_begin(hdc1080);
+  sensor = mgos_HDC1080_create();
   ...
 }
 
 timer_cb(void *)
 {
-  if (mgos_HDC1080_is_connected(hdc1080))
+  if (sensor->isAvailable())
   {
-    double temp_c = mgos_HDC1080_read_temperature(hdc1080);
-    double humidity = mgos_HDC1080_read_humidity(hdc1080);
+    double temp_c = sensor->readTemperature();
+    double humidity = sensor->readHumidity();
   }
   ...
 }
