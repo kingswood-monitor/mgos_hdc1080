@@ -1,11 +1,8 @@
 author: Richard Lyon <richardlyon@fastmail.com>
 type: lib
 description: A driver for a TI HDC1080 temperature and humidity sensor
-version: 1.2
+version: 1.3
 name: TI_HDC1080_LIBRARY
-# libs_version: ${mos.version}
-# modules_version: ${mos.version}
-# mongoose_os_version: ${mos.version}
 tags:
   - c
   - HDC1080
@@ -13,8 +10,8 @@ tags:
   - humidity
 sources:
   - src
-filesystem:
-  - fs
+includes:
+  - include
 config_schema:
   - ["sensor", "o", { title: "Sensor custom settings" }]
   - ["sensor.HDC1080", "o", { title: "TI HDC1080" }]
@@ -24,7 +21,6 @@ config_schema:
 libs:
   - origin: https://github.com/mongoose-os-libs/arduino-compat
   - origin: https://github.com/mongoose-os-libs/arduino-wire
-  - origin: https://github.com/richardjlyon/lib-sensor-interface-NODEMCUDEVKIT-mongoose
-includes:
-  - include
+  - origin: https://github.com/kingswood-monitor/mgos_sensor_interface
+    version: 1.3
 manifest_version: 2017-09-29
